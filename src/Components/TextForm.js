@@ -52,8 +52,8 @@ export default function TextForm(props) {
             </div>
             <button className="btn btn-dark mx-1" onClick={handleUpClick}>Convert To Upper Case</button>
             <button className="btn btn-dark mx-1" onClick={handleDownClick}>Convert To Lower Case</button>
+            <button className="btn btn-dark mx-1" onClick={handleTitleClick}>Covert To Title Case</button>
             <button className="btn btn-dark mx-1" onClick={clearFunc}>Clear</button>
-            <button className="btn btn-dark mx-1" onClick={handleTitleClick}>Title Case</button>
         </div>
         <div className="container my-3">
             <h4>You text summary is here </h4>
