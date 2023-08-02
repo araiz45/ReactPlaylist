@@ -24,6 +24,25 @@ export default function TextForm(props) {
         return text.split(" ").length
     }
     let customValue = customLength();
+
+    const handleTitleClick = () =>{
+        let para = '';
+        let newText = text.split(" ");
+        newText.forEach((value, i) =>{
+            if(value){
+                let newValue = value[0].toUpperCase() + value.slice(1).toLowerCase()
+                para += newValue;
+                if(i < newText.length - 1){
+                    para += " ";
+                }
+                setText(para);
+            }else{
+                alert("Enter Text Please");
+            }
+        })
+        
+
+    }
     return (
         <>
         <div className="container">
@@ -34,6 +53,7 @@ export default function TextForm(props) {
             <button className="btn btn-dark mx-1" onClick={handleUpClick}>Convert To Upper Case</button>
             <button className="btn btn-dark mx-1" onClick={handleDownClick}>Convert To Lower Case</button>
             <button className="btn btn-dark mx-1" onClick={clearFunc}>Clear</button>
+            <button className="btn btn-dark mx-1" onClick={handleTitleClick}>Title Case</button>
         </div>
         <div className="container my-3">
             <h4>You text summary is here </h4>
