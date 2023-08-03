@@ -2,17 +2,23 @@ import React, { useState } from 'react'
 
 export default function TextForm(props) {
     const [text, setText] = useState('');
+    if(text === ''){
+        document.title = "TextUtils - By Araix";
+    }
     // setText("hello");
     const handleUpClick = (event) => {
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Text has been converted to upper-case successfully", "success")
     }
     const handleOnChange = (event) => {
         setText(event.target.value);
+        document.title = "TextUtils - Inserting...";
     }
     const handleDownClick = (event) => {
         let newText = text.toLowerCase();
         setText(newText)
+        props.showAlert("Text has been converted to lower-case successfully", "success")
     }
     const clearFunc = () => {
         setText("");
@@ -36,6 +42,8 @@ export default function TextForm(props) {
                     para += " ";
                 }
                 setText(para);
+                props.showAlert("Text has been converted to capitalize successfully", "success")
+
             }
         })
 
@@ -46,7 +54,7 @@ export default function TextForm(props) {
 
         if (text !== "") {
             navigator.clipboard.writeText(text).then(() => {
-                
+                props.showAlert("Text has been copied successfully", "success")
             }, (err) => {
                 alert("failed");
             })
@@ -56,21 +64,24 @@ export default function TextForm(props) {
     const handleSpeechClick = () => {
         let value = new SpeechSynthesisUtterance(text)
         window.speechSynthesis.speak(value)
+        props.showAlert("Reading text loudly", "success")
+        document.title = "TextUtils - Speaking";
     }
     return (
         <>
-
-            <div className="container">
+            <div className="container container-sm">
                 <h1>{props.heading}</h1>
                 <div className="mb-3">
                     <textarea className="form-control" id="myBox" rows={10} value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white' }}></textarea>
                 </div>
-                <button className={`btn btn-${props.mode === 'light' ? 'dark' : 'light'} m-1`} onClick={handleUpClick}>Convert To Upper Case</button>
-                <button className={`btn btn-${props.mode === 'light' ? 'dark' : 'light'} m-1`} onClick={handleDownClick}>Convert To Lower Case</button>
-                <button className={`btn btn-${props.mode === 'light' ? 'dark' : 'light'} m-1`} onClick={handleTitleClick}>Covert To Title Case</button>
-                <button className={`btn btn-${props.mode === 'light' ? 'dark' : 'light'} m-1 copy`} onClick={handleCopyClick}>Copy To Clipboard</button>
-                <button className={`btn btn-${props.mode === 'light' ? 'dark' : 'light'} m-1`} onClick={handleSpeechClick}>Text To Speech</button>
-                <button className={`btn btn-${props.mode === 'light' ? 'dark' : 'light'} m-1`} onClick={clearFunc}>Clear</button>
+                <div className="btn-container" style={text.length > 0? {display: "block"} : {display: 'none'}}>
+                    <button className={`my-btn btn m-1`} onClick={handleUpClick} style={{backgroundColor: props.color, color: "white", border: `2px solid ${props.color}`}}>Convert To Upper Case</button>
+                    <button className={`my-btn btn m-1`} onClick={handleDownClick} style={{backgroundColor: props.color, color: "white", border: `2px solid ${props.color}`}}>Convert To Lower Case</button>
+                    <button className={`my-btn btn m-1`} onClick={handleTitleClick} style={{backgroundColor: props.color, color: "white", border: `2px solid ${props.color}`}}>Covert To Title Case</button>
+                    <button className={`my-btn btn m-1 copy`} onClick={handleCopyClick} style={{backgroundColor: props.color, color: "white", border: `2px solid ${props.color}`}}>Copy To Clipboard</button>
+                    <button className={`my-btn btn m-1`} onClick={handleSpeechClick} style={{backgroundColor: props.color, color: "white", border: `2px solid ${props.color}`}}>Text To Speech</button>
+                    <button className={`my-btn btn m-1`} onClick={clearFunc} style={{backgroundColor: props.color, color: "white", border: `2px solid ${props.color}`}}>Clear</button>
+                </div>
             </div>
             <div className="container my-3">
                 <h4 className="trans-p">{text.length > 0 ? 'You text summary is here ' : ''}</h4>

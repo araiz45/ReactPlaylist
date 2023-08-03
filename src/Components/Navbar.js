@@ -1,9 +1,9 @@
-import React from "react";
 import PropTypes from 'prop-types'
 
 export default function Navbar(props) {
+    
     return (
-        <nav className={`navbar navbar-expand-lg navbar-dark`} style={{backgroundColor: "#1d0b6e"}}>
+        <nav className={`navbar navbar-expand-lg navbar-dark`} style={{backgroundColor: props.color}}>
             <div className="container-fluid">
                 <a className="navbar-brand customTitle" href="/">
                     TextUtils
@@ -36,6 +36,7 @@ export default function Navbar(props) {
                         <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" style={{cursor: "pointer"}} id="flexSwitchCheckDefault" />
                         <label style={{cursor: "pointer"}}  className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable {props.mode === 'light'? 'Dark':'Light'} Mode</label>
                     </div>
+                    <input type="color" className="form-control mx-3" name="color" id="color" style={{width: "50px"}}/>
                 </div>
             </div>
         </nav>

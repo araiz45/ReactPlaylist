@@ -1,0 +1,14 @@
+import React from 'react'
+
+export default function Alert(props) {
+    const capitailize = () =>{
+        let newType = props.alert.type;
+        let newTyping = newType[0].toUpperCase() + newType.slice(1).toLowerCase();
+        return newTyping
+    }
+  return (
+    props.alert && <div className={`alert alert-${props.alert.type} alert-dismissible fade show` }role="alert">
+    <strong>{capitailize()}</strong> : {props.alert.msg} 
+  </div>
+  )
+}
