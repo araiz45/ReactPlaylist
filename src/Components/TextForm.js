@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 
 export default function TextForm(props) {
+    try {
+        document.getElementById("change-li").classList.add("active");
+        document.getElementById("change-li-about").classList.remove("active");
+    } catch (error) {
+        console.error(error)
+    }
     const [text, setText] = useState('');
     if(text === ''){
-        document.title = "TextUtils - By Araix";
+        document.title = "TextUtils - Home";
     }
     // setText("hello");
     const handleUpClick = (event) => {
@@ -65,8 +71,10 @@ export default function TextForm(props) {
         let value = new SpeechSynthesisUtterance(text)
         window.speechSynthesis.speak(value)
         props.showAlert("Reading text loudly", "success")
-        document.title = "TextUtils - Speaking";
+        document.title = "TextUtils - Speaking";    
+        
     }
+    // document.title = "TextUtils - Araix";
     return (
         <>
             <div className="container container-sm">

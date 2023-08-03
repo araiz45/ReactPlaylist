@@ -1,9 +1,17 @@
 import './App.css';
 import Alert from './Components/Alert';
-// import { About } from './Components/About';
+import { About } from './Components/About';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
+// import { createRoot } from "react-dom/client";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  // Route,
+  // Link,
+} from "react-router-dom";
 import React, {useState} from 'react'
+
 function App() {
   const [mode, setMode] = useState("light")
   const [alert, setAlert] = useState(null);
@@ -15,7 +23,7 @@ function App() {
   setInterval(() => {
       settingColor()        
   }, 1000);
-
+  
   const showAlert = (message, type) =>{
         setAlert({
             msg: message,
@@ -30,23 +38,39 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#212529";
       document.body.style.color = "white";
-      showAlert("Enable Dark Mode", "success")
+      showAlert("Dark Mode Enable", "success")
     } else {
       setMode("light");
       document.body.style.backgroundColor = "white";
       document.body.style.color = "#212529";
-      showAlert("Enable Light Mode", "success")
+      showAlert("Dark Mode Disabled", "success")
     }
   }
+  const router = createBrowserRouter([{
+    path: "/",
+    element: (
+      <>
+      <Navbar title="Util" aboutText="about us" mode={mode} toggleMode={toggleModeFunc} color={color}/>
+      <Alert alert={alert}/>
+      <div className={`container my-4`}>
+        <TextForm heading="Enter your text to analyze below" mode={mode} showAlert={showAlert} color={color}/>
+      </div>
+      </>
+    )
+  }, {
+    path: "/about",
+    element: (
+      <>
+        <Navbar title="Util" aboutText="about us" mode={mode} toggleMode={toggleModeFunc} color={color}/>
+        <Alert alert={alert}/>
+        <div className={`container my-4`}>
+            <About/>
+        </div>
+      </>
+    )
+  }])
   return (
-   <>   
-    <Navbar title="Util" aboutText="about us" mode={mode} toggleMode={toggleModeFunc} color={color}/>
-    <Alert alert={alert}/>
-    <div className={`container my-4`}>
-      <TextForm heading="Enter your text to analyze below" mode={mode} showAlert={showAlert} color={color}/>
-      {/* <About/> */}
-    </div>
-   </>
+    <RouterProvider exact router={router}/>
   );
 }
 
