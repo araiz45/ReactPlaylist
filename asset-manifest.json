@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ReactPlaylist/static/css/main.d0e97548.css",
-    "main.js": "/ReactPlaylist/static/js/main.27ca1d9d.js",
+    "main.js": "/ReactPlaylist/static/js/main.9a0909c8.js",
     "static/js/787.0cbdef75.chunk.js": "/ReactPlaylist/static/js/787.0cbdef75.chunk.js",
     "index.html": "/ReactPlaylist/index.html",
     "main.d0e97548.css.map": "/ReactPlaylist/static/css/main.d0e97548.css.map",
-    "main.27ca1d9d.js.map": "/ReactPlaylist/static/js/main.27ca1d9d.js.map",
+    "main.9a0909c8.js.map": "/ReactPlaylist/static/js/main.9a0909c8.js.map",
     "787.0cbdef75.chunk.js.map": "/ReactPlaylist/static/js/787.0cbdef75.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d0e97548.css",
-    "static/js/main.27ca1d9d.js"
+    "static/js/main.9a0909c8.js"
   ]
 }
