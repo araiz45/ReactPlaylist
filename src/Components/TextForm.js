@@ -5,11 +5,11 @@ export default function TextForm(props) {
         document.getElementById("change-li").classList.add("active");
         document.getElementById("change-li-about").classList.remove("active");
     } catch (error) {
-        console.error(error)
+        // console.error(error)
     }
     const [text, setText] = useState('');
     if(text === ''){
-        document.title = "TextUtils - Home";
+        //document.title = "TextUtils - Word Counter | Character counter";
     }
     // setText("hello");
     const handleUpClick = (event) => {
@@ -19,7 +19,7 @@ export default function TextForm(props) {
     }
     const handleOnChange = (event) => {
         setText(event.target.value);
-        document.title = "TextUtils - Inserting...";
+        //document.title = "TextUtils - Inserting...";
     }
     const handleDownClick = (event) => {
         let newText = text.toLowerCase();
@@ -33,7 +33,7 @@ export default function TextForm(props) {
         if (text === "") {
             return 0
         }
-        return text.split(" ").length
+        return text.split(" ").filter((e) =>{return e.length!==0}).length
     }
     let customValue = customLength();
 
@@ -71,14 +71,14 @@ export default function TextForm(props) {
         let value = new SpeechSynthesisUtterance(text)
         window.speechSynthesis.speak(value)
         props.showAlert("Reading text loudly", "success")
-        document.title = "TextUtils - Speaking";    
+        //document.title = "TextUtils - Speaking";    
         
     }
-    // document.title = "TextUtils - Araix";
+    // //document.title = "TextUtils - Araix";
     return (
         <>
             <div className="container container-sm">
-                <h1>{props.heading}</h1>
+                <h1 className='mb-3'>{props.heading}</h1>
                 <div className="mb-3">
                     <textarea className="form-control" id="myBox" rows={10} value={text} onChange={handleOnChange} style={{ backgroundColor: props.mode === 'light' ? 'white' : '#212529', color: props.mode === 'light' ? 'black' : 'white' }}></textarea>
                 </div>
@@ -94,7 +94,7 @@ export default function TextForm(props) {
             <div className="container my-3">
                 <h4 className="trans-p">{text.length > 0 ? 'You text summary is here ' : ''}</h4>
                 <p className="trans-p">{text.length > 0 ? `words: ${customValue} 🙂` : ''}{text.length > 0 ? `characters: ${text.length} 😉` : ''}</p>
-                <p className="trans-p">{text.length > 0 ? `words time to read: ${0.008 * text.split(" ").length} minutes` : ''}</p>
+                <p className="trans-p">{text.length > 0 ? `words time to read: ${Math.round(0.008 * text.split(" ").filter((e) =>{return e.length!==0}).length)} ${Math.round(0.008 * text.split(" ").filter((e) =>{return e.length!==0}).length) === 0? 'minute': 'minute'}` : ''}</p>
                 <h5 className="trans-p">{text.length > 0 ? 'Preview' : ''}</h5>
                 <p className="trans-p">{text}</p>
             </div>

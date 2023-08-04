@@ -1,7 +1,7 @@
 // import React, {useState} from 'react'
 
 export const About = () => {
-   document.title = "TextUtils - About";
+//    document.title = "TextUtils - About";
    try {
     document.getElementById("change-li").classList.remove("active");
    document.getElementById("change-li-about").classList.add("active"); 

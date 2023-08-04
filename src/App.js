@@ -53,7 +53,7 @@ function App() {
       <Navbar title="Util" aboutText="about us" mode={mode} toggleMode={toggleModeFunc} color={color}/>
       <Alert alert={alert}/>
       <div className={`container my-4`}>
-        <TextForm heading="Enter your text to analyze below" mode={mode} showAlert={showAlert} color={color}/>
+        <TextForm heading="Try TextUtils - Word Counter, Character Counter, Text Speak" mode={mode} showAlert={showAlert} color={color}/>
       </div>
       </>
     )
