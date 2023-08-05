@@ -33,7 +33,7 @@ export default function TextForm(props) {
         if (text === "") {
             return 0
         }
-        return text.split(" ").filter((e) =>{return e.length!==0}).length
+        return text.split(/\s+/).filter((e) =>{return e.length!==0}).length
     }
     let customValue = customLength();
 
@@ -94,7 +94,7 @@ export default function TextForm(props) {
             <div className="container my-3">
                 <h4 className="trans-p">{text.length > 0 ? 'You text summary is here ' : ''}</h4>
                 <p className="trans-p">{text.length > 0 ? `words: ${customValue} 🙂` : ''}{text.length > 0 ? `characters: ${text.length} 😉` : ''}</p>
-                <p className="trans-p">{text.length > 0 ? `words time to read: ${Math.round(0.008 * text.split(" ").filter((e) =>{return e.length!==0}).length)} ${Math.round(0.008 * text.split(" ").filter((e) =>{return e.length!==0}).length) === 0? 'minute': 'minute'}` : ''}</p>
+                <p className="trans-p">{text.length > 0 ? `words time to read: ${Math.round(0.008 * text.split(" ").filter((e) =>{return e.length!==0}).length)} ${Math.round(0.008 * text.split(/\s+/).filter((e) =>{return e.length!==0}).length) === 0? 'minute': 'minute'}` : ''}</p>
                 <h5 className="trans-p">{text.length > 0 ? 'Preview' : ''}</h5>
                 <p className="trans-p">{text}</p>
             </div>
